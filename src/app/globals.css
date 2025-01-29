@@ -1,21 +1,183 @@
+/* src/app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: linear-gradient(120deg, #FFA500, #FF5733, #00AAFF, #FFC300, #8E44AD, #28B463);
+    --foreground: #ffffff;
+    background-size: 300% 300%;
+    animation: gradient 10s ease infinite;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: linear-gradient(120deg, #FFA500, #FF5733, #00AAFF, #FFC300, #8E44AD, #28B463);
+        --foreground: #ededed;
+        background-size: 300% 300%;
+        animation: gradient 10s ease infinite;
+    }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    background: var(--background);
+    font-family: 'Open Sans', sans-serif !important;
+    background-size: 200% 200%;
+    animation: gradient 10s ease infinite;
 }
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 通用按钮样式 */
+.primary-button {
+  @apply font-bold text-white py-2 px-4 mr-1 rounded;
+  @apply bg-blue-500 hover:bg-blue-700; /* 使用 Tailwind 的颜色类 */
+  font-family: 'sans-serif';
+}
+
+/* 移动端按钮样式 */
+@media (max-width: 600px) {
+    .primary-button {
+        @apply p-1;
+        min-width: auto;
+    }
+}
+
+/* 标签按钮样式 */
+.tag-button {
+    font-family: 'sans-serif';
+    border-width: 1px;
+    border-color: #ccc;
+    margin-right: 8px; /* 使用 Tailwind 的间距类 */
+    padding: 4px 8px; /* 使用 Tailwind 的内边距类 */
+     border-radius: 16px;
+}
+
+.tag-button:hover {
+    border-color: #bbb;
+}
+
+/* 标签文本样式 */
+.tag-text {
+    font-family: 'sans-serif';
+}
+
+/* 文本样式 */
+.text-style {
+    font-family: 'sans-serif';
+}
+
+/* 图标按钮样式 */
+.icon-button {
+    @apply p-1;
+    color: black;
+}
+
+.icon-button svg {
+    font-size: 1.5rem;
+}
+
+/* 编辑图标按钮样式 */
+.edit-icon-button {
+    @apply p-1;
+    color: #FFA500;
+}
+
+.edit-icon-button svg {
+    font-size: 1.5rem;
+}
+
+/* 复选框样式 */
+.checkbox {
+    color: black;
+}
+
+.checkbox.Mui-checked {
+    color: black;
+}
+
+/* 待办事项列表项样式 */
+.todo-item {
+    @apply w-full bg-white rounded-none shadow-md p-4 relative transition-colors; /* 移除圆角 */
+    height: 160px;
+    border: none; /* 移除边框 */
+}
+
+.todo-item.completed {
+    @apply bg-gray-100 grayscale;
+}
+
+/* 优先级颜色 */
+.priority-high {
+    @apply bg-red-500;
+}
+
+.priority-medium {
+    @apply bg-orange-400;
+}
+
+.priority-low {
+    @apply bg-green-500;
+}
+
+.priority-bar {
+    @apply p-1.5 w-3 absolute top-0 bottom-0 left-0; /* 修改为窄条 */
+}
+
+/* 标题样式 */
+.todo-title {
+    @apply text-lg font-semibold mb-2;
+    font-size: 20px; /* 修改标题字体大小 */
+}
+
+/* 描述文本样式 */
+.todo-description {
+    @apply text-sm text-gray-600;
+    font-size: 12px; /* 修改描述字体大小 */
+}
+
+/* 模态框样式 */
+.modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-50;
+}
+
+.modal-content {
+    @apply fixed inset-0 flex items-center justify-center z-50;
+}
+
+.modal-inner {
+    @apply bg-white p-6 rounded-lg shadow-lg;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 模态框按钮样式 */
+.modal-button {
+    @apply font-bold text-white py-2 px-4 rounded;
+    font-family: 'sans-serif';
+}
+
+.modal-button-confirm {
+    @apply bg-blue-500 hover:bg-blue-700;
+}
+
+.modal-button-delete {
+    @apply bg-red-500 hover:bg-red-700;
+}
+
+/* 模态框标题样式 */
+.modal-title {
+    @apply text-lg font-bold mb-4;
+    font-family: 'sans-serif';
+}
+
