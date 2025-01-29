@@ -21,7 +21,7 @@ function AuthPage() {
     };
 
     return (
-        <Box sx={{ maxWidth: '600px', margin: 'auto', marginTop: '10vh'}}>
+        <Box sx={{ maxWidth: '600px', margin: 'auto', marginTop: '10vh', height: '90vh' }}>
              <Tabs value={mode} onChange={handleTabChange} centered>
                  <Tab label="登录" value="login" />
                  <Tab label="注册" value="signup" />
