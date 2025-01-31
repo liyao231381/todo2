@@ -56,14 +56,15 @@ export default function RootLayout({ children }) {
                         onClick={handleAddToHomeScreen}
                         style={{
                             position: 'fixed',
-                            bottom: '20px',
-                            right: '20px',
+                            bottom: '1em',
+                            left: '1em',
                             padding: '10px',
-                            backgroundColor: '#0055ff',
+                            backgroundColor: '#00aaff',
                             color: 'white',
                             border: 'none',
                             borderRadius: '5px',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            zIndex: 9999,
                         }}
                     >
                         添加到主屏幕

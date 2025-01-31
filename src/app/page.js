@@ -22,7 +22,6 @@
     import IconButton from '@mui/material/IconButton';
     import SearchIcon from '@mui/icons-material/Search';
     import Modal from 'react-modal';
-    import { v4 as uuidv4 } from 'uuid';
     import Calendar from './components/Calendar';
     import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
     import CircularProgress from '@mui/material/CircularProgress'; // 引入 CircularProgress
@@ -369,15 +368,24 @@
             <Box
                 sx={{
                     maxWidth: '800px',
-                    width: 'calc(100% - 32px)',
+                    width: {
+                        xs: '100%',
+                        sm: 'calc(100% - 32px)',
+                    },
                     bgcolor: 'background.default',
                     height: '100vh',
                     overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column',
-                    margin: '30px auto',
+                    margin: {
+                        xs:'0',
+                        sm:'30px auto',
+                    },
                     border: 'none',
-                    borderRadius: '12px',
+                    borderRadius: {
+                        xs: '0',
+                        sm: '12px',
+                    },
                 }}
             >
                 <Box
@@ -465,7 +473,6 @@
                     <StyledButton
                         onClick={openAddTodoModal}
                         variant="contained"
-                        color="success"
                         startIcon={<AddIcon style={{ color: 'white' }} />}
                         sx={{
                             display: { xs: 'none', md: 'flex' },
@@ -576,7 +583,20 @@
                     onConfirm={handleDeleteTodo}
                 />
 
-                <StyledAddIconButton onClick={openAddTodoModal} sx={{ display: { xs: 'flex', md: 'none' } }}>
+                <StyledAddIconButton onClick={openAddTodoModal}
+                    sx={{
+                        display: {
+                            xs: 'flex',
+                            md: 'none',
+                            backgroundColor: '#ffa500',
+                            height: '50px',
+                            width: '50px',
+                            borderRadius: '50%',
+                            zIndex: 1000 
+                            }
+                        }
+                    }
+                >
                     <AddIcon />
                 </StyledAddIconButton>
             </Box>

@@ -29,7 +29,7 @@ export async function PATCH(req, { params }) {
     }
 
     const userId = decodedToken.userId;
-    const { id } = params;
+    const { id } = await params;
     const { completed } = await req.json();
 
     if (typeof completed !== 'boolean') {
