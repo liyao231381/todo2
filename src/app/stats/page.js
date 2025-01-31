@@ -12,9 +12,9 @@ const getPriorityColor = (priority) => {
         case '高':
             return '#ff6b6b'; // 红色
         case '中':
-            return '#ffab40'; // 橙色
+            return '#ffa500'; // 橙色
         case '低':
-            return '#4caf50'; // 绿色
+            return '#61cf65'; // 绿色
         default:
             return 'transparent';
     }
@@ -23,12 +23,12 @@ const getPriorityColor = (priority) => {
 // 新的标签颜色方案（第二版）
 const getTagColor = (tag, index) => {
    const tagColors = [
-        'rgb(110, 238, 255)', // 青色
-        'rgb(97, 207, 101)', // 绿色
+        '#6eeeff', // 青色
+        '#61cf65', // 绿色
         '#FF9800', // 橙色
-        'rgb(255, 107, 156)', // 粉色
-        'rgb(236, 127, 255)', // 紫色
-        'rgb(79, 199, 255)'  // 蓝色
+        '#ff6b9c', // 粉色
+        '#ec7fff', // 紫色
+        '#4fc7ff'  // 蓝色
     ];
     return tagColors[index % tagColors.length] || '#e0e0e0'; // 默认灰色
 };
@@ -146,7 +146,7 @@ export default function Stats() {
     };
 
     return (
-        <main className="font-sans bg-gray-100 min-h-screen p-4 sm:p-6 flex justify-center">
+        <main className="font-sans bg-gray-100 min-h-screen sm:p-6 flex justify-center">
             <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg p-4 sm:p-6 space-y-4 sm:space-y-6">
                 <div className="flex justify-between items-center w-full">
                     <Link href="/" className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 text-black rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
@@ -166,15 +166,15 @@ export default function Stats() {
                         <div className="grid grid-cols-3 gap-4 sm:grid-cols-3 sm:gap-6">
                             <div className="p-4 sm:p-6 bg-white shadow rounded-lg">
                                 <h2 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">总任务数</h2>
-                                <p className="text-xl sm:text-2xl font-bold text-gray-800">{stats.total}</p>
+                                <p className="text-xl sm:text-2xl font-bold text-red-500">{stats.total}</p>
                             </div>
                             <div className="p-4 sm:p-6 bg-white shadow rounded-lg cursor-pointer" onClick={handleCompletedClick}>
                                 <h2 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">已完成</h2>
-                                <p className="text-xl sm:text-2xl font-bold text-green-600">{stats.completed}</p>
+                                <p className="text-xl sm:text-2xl font-bold text-green-500">{stats.completed}</p>
                             </div>
                             <div className="p-4 sm:p-6 bg-white shadow rounded-lg">
                                 <h2 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">待完成</h2>
-                                <p className="text-xl sm:text-2xl font-bold text-yellow-600">{stats.pending}</p>
+                                <p className="text-xl sm:text-2xl font-bold text-orange-400">{stats.pending}</p>
                             </div>
                         </div>
 

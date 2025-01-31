@@ -12,12 +12,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
     '&:hover': {
         backgroundColor: theme.palette.primary.dark,
     },
-    '&:last-child':{
-        backgroundColor: theme.palette.error.main,
-        '&:hover': {
-            backgroundColor: theme.palette.error.dark,
-        },
-    },
 }));
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
@@ -34,20 +28,42 @@ const DeleteConfirmationModal = ({ isOpen, onRequestClose, onConfirm }) => {
             overlayClassName="modal-overlay"
         >
             <Box className="modal-inner">
-                <StyledTypography variant="h6" className="modal-title">确认删除</StyledTypography>
-                <StyledTypography>你确定要删除这个待办事项吗？</StyledTypography>
+                <StyledTypography variant="h6" className="modal-title"
+                    sx={{
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                    }}
+                >确认删除</StyledTypography>
+                <StyledTypography
+                    sx={{
+                        textAlign: 'center',
+                        marginY: '1rem',
+                        fontSize: '0.8rem',
+                    }}>你确定要删除这个待办事项吗？</StyledTypography>
                 <Box
                     mt="auto"
                     display="flex"
                     justifyContent="space-between"
                     width="100%"
-                    marginTop={"2rem"}
+                    marginTop={"1rem"}
                 >
-                    <StyledButton onClick={onRequestClose} variant="contained" className="modal-button modal-button-confirm">
-                        取消
+                     <StyledButton onClick={onConfirm} variant="contained"
+                        sx={{
+                            backgroundColor: ' #ff0000',
+                            '&:hover': {
+                                backgroundColor: '#cc0000',
+                            }
+                        }}
+                    >删除
                     </StyledButton>
-                    <StyledButton onClick={onConfirm} variant="contained" className="modal-button modal-button-delete">
-                        删除
+                    <StyledButton onClick={onRequestClose} variant="contained"
+                        sx={{
+                            backgroundColor: '#00aaff',
+                            '&:hover': {
+                                backgroundColor: '#0077cc',
+                            }
+                        }}
+                    >取消
                     </StyledButton>
                 </Box>
             </Box>

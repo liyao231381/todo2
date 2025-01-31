@@ -16,7 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 const StyledButton = styled(Button)(() => ({
     fontFamily: 'sans-serif',
     '&:hover': {
-        backgroundColor: '#0077CC', // Slightly darker blue on hover
+        backgroundColor: '#00aaff', // Slightly darker blue on hover
     },
 }));
 
@@ -33,7 +33,7 @@ const StyledTypography = styled(Typography)(() => ({
 const StyledModalContent = styled(Box)(({ theme }) => ({
     maxWidth: '600px', // 设置模态框最大宽度
     margin: 'auto',
-    marginTop: '5vh', // 距离顶部 10vh
+    marginTop: '5vh', // 距离顶部 5vh
     padding: theme.spacing(3),
     position: 'relative',
     backgroundColor: 'white',
@@ -44,7 +44,7 @@ const StyledModalContent = styled(Box)(({ theme }) => ({
     },
 }));
 
-const TodoModal = ({ isOpen, onRequestClose, onAddTodo, onUpdateTodo, todo, isEditMode }) => {
+const TodoModal = ({ isOpen, onRequestClose, onAddTodo, onUpdateTodo, todo, isEditMode, existingTags }) => {
     const addButtonRef = useRef(null);
     const isMobile = useMediaQuery('(max-width:600px)');
     const [title, setTitle] = useState('');
@@ -68,22 +68,6 @@ const TodoModal = ({ isOpen, onRequestClose, onAddTodo, onUpdateTodo, todo, isEd
             setPriority('中');
         }
     }, [todo, isEditMode]);
-
-    useEffect(() => {
-        const handleKeyDown = (event) => {
-            if (event.key === 'Enter' && addButtonRef.current) {
-                event.preventDefault();
-                addButtonRef.current.focus(); // Focus the button
-                addButtonRef.current.click(); // Trigger the click event
-            }
-        };
-
-        document.addEventListener('keydown', handleKeyDown);
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [addButtonRef, onAddTodo, onUpdateTodo, isEditMode]);
-
 
     const handleAddOrUpdate = async () => {
         const updatedTodo = {
@@ -110,6 +94,20 @@ const TodoModal = ({ isOpen, onRequestClose, onAddTodo, onUpdateTodo, todo, isEd
         setDueDate(null);
         setPriority('中');
         onRequestClose();
+    };
+
+    const handleTagClick = (tag) => {
+        // 检查标签是否已存在
+        setTags((prevTags) => {
+            const tagsArray = prevTags.split(',').map(tag => tag.trim()).filter(tag => tag); // 移除空标签
+            if (tagsArray.includes(tag)) {
+                // 如果标签已存在，移除该标签
+                return tagsArray.filter(t => t !== tag).join(', ');
+            } else {
+                // 如果标签不存在，添加标签，前面加上逗号
+                return tagsArray.length > 0 ? `${prevTags.trim()}, ${tag}` : tag; // 处理逗号
+            }
+        });
     };
 
     return (
@@ -159,6 +157,28 @@ const TodoModal = ({ isOpen, onRequestClose, onAddTodo, onUpdateTodo, todo, isEd
                         variant="outlined"
                         fullWidth
                     />
+                    {/* 渲染现有标签 */}
+                    <Box mt={1}>
+                        {existingTags.map((tag, index) => (
+                            <Button
+                                key={index}
+                                variant="outlined"
+                                size="small"
+                                onClick={() => handleTagClick(tag)}
+                                sx={{
+                                    marginRight: '5px',
+                                    marginBottom: '5px',
+                                    color: 'white',
+                                    fontWeight: 'bold',
+                                    backgroundColor: '#00aaff',   
+                                    border: '1px solid #00aaff',
+                                    minWidth: 'fit-content',
+                                }}
+                            >
+                                {tag}
+                            </Button>
+                        ))}
+                    </Box>
                     <Box display="flex" justifyContent="space-between" alignItems="center">
                         <TextField
                             type="date"

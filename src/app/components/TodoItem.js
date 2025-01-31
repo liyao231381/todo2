@@ -13,9 +13,9 @@ const getPriorityColor = (priority) => {
         case '高':
             return '#ff6b6b'; // 红色
         case '中':
-            return '#ffab40'; // 橙色
+            return '#ffa500'; // 橙色
         case '低':
-            return '#4caf50'; // 绿色
+            return '#61cf65'; // 绿色
         default:
             return 'transparent';
     }
@@ -34,8 +34,7 @@ const StyledCard = styled(Box)(({ theme, completed }) => ({
     flexDirection: 'column',
     filter: completed === 'true' ? 'grayscale(1)' : 'none',
     '&:hover': {
-        transform: 'translateY(-2px)',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+        transform: 'scale(1.05)',
     },
     position: 'relative', // 添加相对定位，解决定位元素不显示问题
 

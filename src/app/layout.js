@@ -58,13 +58,15 @@ export default function RootLayout({ children }) {
                             position: 'fixed',
                             bottom: '1em',
                             left: '1em',
-                            padding: '10px',
+                            padding: '4px 10px',
                             backgroundColor: '#00aaff',
                             color: 'white',
                             border: 'none',
                             borderRadius: '5px',
                             cursor: 'pointer',
                             zIndex: 9999,
+                            fontSize: '0.9em',
+                            fontWeight: 'lighter',
                         }}
                     >
                         添加到主屏幕
